@@ -28,7 +28,7 @@ app.get("/", (_req, res) => {
 
 app.get("/private", protector, (_req, res) => {
   res.json({
-    message: "Plugin development server is running.",
+    message: "Private route.",
   });
 });
 
