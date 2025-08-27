@@ -1,7 +1,7 @@
 {
-  "name": "dexbreille-plugin",
+  "name": "dexbreille-gatekeeper-plugin",
   "version": "1.0.0",
-  "description": "Dexbreill Plugin is a template for creating plugin for dexbreille based project.",
+  "description": "Gatekeeper through Auth0 M2M Authentication for dexbreille based project.",
   "main": "./dist/lib.js",
   "scripts": {
     "compile": "tsc",

@@ -1,3 +1,3 @@
-# Dexbreille plugin
+# Dexbreille Gatekeeper Plugin
 
-Dexbreille Plugin is a template for creating plugin for [dexbreille](https://github.com/briskbreille/dexbreille) based project.
+Gatekeeper through Auth0 M2M Authentication for dexbreille based project.
