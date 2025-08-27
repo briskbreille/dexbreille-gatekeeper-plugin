@@ -1,0 +1,39 @@
+{
+  "name": "dexbreille-plugin",
+  "version": "1.0.0",
+  "description": "Dexbreill Plugin is a template for creating plugin for dexbreille based project.",
+  "main": "./dist/lib.js",
+  "scripts": {
+    "compile": "tsc",
+    "start": "node ./dist/index.js",
+    "dev": "nodemon --exec 'npm run compile && npm run start'",
+    "prepare": "npm run compile"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "nodemon": "^3.1.10",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "node_modules",
+      "dist"
+    ],
+    "ext": "*.ts",
+    "delay": 1000
+  },
+  "dotenvFilenames": [
+    ".env",
+    ".env.local"
+  ],
+  "devPort": 8080
+}
