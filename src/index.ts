@@ -6,8 +6,8 @@ const name = metadata.packageData["name"] as string;
 const port = metadata.packageData["devPort"] as number;
 
 const app = express();
+const gatekeeper = plugin.createGatekeeper();
 
-const protector = plugin.getProtector();
 const errorHandler: express.ErrorRequestHandler = (err, _req, res, next) => {
   if (err) {
     const status = (err?.status ?? 500) as number;
@@ -26,9 +26,11 @@ app.get("/", (_req, res) => {
   });
 });
 
-app.get("/private", protector, (_req, res) => {
-  res.json({
+if (gatekeeper) app.use("/private", gatekeeper);
+app.get("/private", (req, res) => {
+  return res.json({
     message: "Private route.",
+    payload: req.payload,
   });
 });
 

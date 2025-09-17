@@ -1,7 +1,7 @@
 import plugin = require("./plugin");
 
-const { getProtector } = plugin;
+const { createGatekeeper } = plugin;
 
 export = {
-  getProtector,
+  createGatekeeper,
 };
