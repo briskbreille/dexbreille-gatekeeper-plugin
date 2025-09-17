@@ -5,7 +5,7 @@ import * as jose from "jose";
 declare global {
   export namespace Express {
     interface Request {
-      payload?: jose.JWTPayload;
+      jwtPayload?: jose.JWTPayload;
     }
   }
 }
@@ -37,7 +37,7 @@ export const createGatekeeper = () => {
     const token = extractJWTFromRequest(req);
     if (token === null) return res.status(401);
     const { payload } = await jose.jwtVerify(token, jwks);
-    req.payload = payload;
+    req.jwtPayload = payload;
     next();
   };
 

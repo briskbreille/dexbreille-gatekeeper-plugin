@@ -30,7 +30,7 @@ if (gatekeeper) app.use("/private", gatekeeper);
 app.get("/private", (req, res) => {
   return res.json({
     message: "Private route.",
-    payload: req.payload,
+    payload: req.jwtPayload,
   });
 });
 
