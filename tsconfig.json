@@ -33,6 +33,7 @@
     // "noPropertyAccessFromIndexSignature": true,
 
     // Recommended Options
+    "moduleResolution": "nodenext",
     "strict": true,
     "jsx": "react-jsx",
     "verbatimModuleSyntax": true,

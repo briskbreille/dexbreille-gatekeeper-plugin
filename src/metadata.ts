@@ -1,10 +1,12 @@
-import path = require("path");
-import fs = require("fs");
-import configDotenv = require("dotenv");
+import * as path from "path";
+import * as fs from "fs";
+import { config } from "dotenv";
 
-const projectDirectory = path.dirname(__dirname);
-const packageDataPath = path.join(projectDirectory, "package.json");
-const packageData = JSON.parse(fs.readFileSync(packageDataPath).toString());
+export const projectDirectory = path.dirname(import.meta.dirname);
+export const packageDataPath = path.join(projectDirectory, "package.json");
+export const packageData = JSON.parse(
+  fs.readFileSync(packageDataPath).toString()
+);
 const dotenvFilenames = packageData["dotenvFilenames"] as string[];
 
 dotenvFilenames.forEach((dotenvFilename) => {
@@ -14,14 +16,8 @@ dotenvFilenames.forEach((dotenvFilename) => {
       : path.join(projectDirectory, "secret");
   const dotenvPath = path.join(dotenvDirectory, dotenvFilename);
   if (fs.existsSync(dotenvPath))
-    configDotenv.config({
+    config({
       path: dotenvPath,
       override: true,
     });
 });
-
-export = {
-  projectDirectory,
-  packageDataPath,
-  packageData,
-};

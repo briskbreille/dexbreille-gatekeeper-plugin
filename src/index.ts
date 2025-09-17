@@ -1,6 +1,6 @@
-import express = require("express");
-import metadata = require("./metadata");
-import plugin = require("./plugin");
+import express from "express";
+import * as metadata from "./metadata.js";
+import * as plugin from "./plugin.js";
 
 const name = metadata.packageData["name"] as string;
 const port = metadata.packageData["devPort"] as number;

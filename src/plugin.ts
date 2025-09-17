@@ -1,6 +1,14 @@
-require("./metadata");
-import express = require("express");
-import jose = require("jose");
+import "./metadata.js";
+import * as express from "express";
+import * as jose from "jose";
+
+declare global {
+  export namespace Express {
+    interface Request {
+      payload?: jose.JWTPayload;
+    }
+  }
+}
 
 const SKIP_AUTH = Boolean(process.env["SKIP_AUTH"]);
 const AUTH_SERVER_BASE_URL = process.env["AUTH_SERVER_BASE_URL"] as string;
@@ -12,7 +20,7 @@ const jwks = jose.createRemoteJWKSet(
   )
 );
 
-const createGatekeeper = () => {
+export const createGatekeeper = () => {
   if (SKIP_AUTH) return null;
 
   const extractJWTFromRequest = (req: express.Request) => {
@@ -34,8 +42,4 @@ const createGatekeeper = () => {
   };
 
   return gatekeeper;
-};
-
-export = {
-  createGatekeeper,
 };
