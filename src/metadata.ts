@@ -11,8 +11,8 @@ const dotenvFilenames = packageData["dotenvFilenames"] as string[];
 
 dotenvFilenames.forEach((dotenvFilename) => {
   const dotenvDirectory =
-    "SECRET_DIRECTORY" in process.env
-      ? (process.env["SECRET_DIRECTORY"] as string)
+    "VEILED_DIRECTORY" in process.env
+      ? (process.env["VEILED_DIRECTORY"] as string)
       : path.join(projectDirectory, "secret");
   const dotenvPath = path.join(dotenvDirectory, dotenvFilename);
   if (fs.existsSync(dotenvPath))
