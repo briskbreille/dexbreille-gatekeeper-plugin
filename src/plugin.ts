@@ -35,7 +35,9 @@ export const createGatekeeper = () => {
 
   const gatekeeper: express.Handler = async (req, res, next) => {
     const token = extractJWTFromRequest(req);
-    if (token === null) return res.status(401);
+    if (token === null) {
+      throw new Error("Unauthorized.");
+    }
     const { payload } = await jose.jwtVerify(token, jwks);
     req.jwtPayload = payload;
     next();
