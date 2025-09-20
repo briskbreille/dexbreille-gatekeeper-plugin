@@ -9,7 +9,7 @@ export const packageData = JSON.parse(
 );
 const dotenvFilenames = packageData["dotenvFilenames"] as string[];
 
-dotenvFilenames.forEach((dotenvFilename) => {
+dotenvFilenames.toReversed().forEach((dotenvFilename) => {
   const dotenvDirectory =
     "VEILED_DIRECTORY" in process.env
       ? (process.env["VEILED_DIRECTORY"] as string)
@@ -18,6 +18,5 @@ dotenvFilenames.forEach((dotenvFilename) => {
   if (fs.existsSync(dotenvPath))
     config({
       path: dotenvPath,
-      override: true,
     });
 });
