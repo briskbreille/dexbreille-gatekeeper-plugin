@@ -24,7 +24,8 @@
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "jose": "^6.1.0"
+    "jose": "^6.1.0",
+    "zod": "^4.1.11"
   },
   "nodemonConfig": {
     "ignore": [

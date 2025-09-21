@@ -1,6 +1,7 @@
 import "./metadata.js";
 import * as express from "express";
 import * as jose from "jose";
+import z from "zod";
 
 declare global {
   export namespace Express {
@@ -10,9 +11,15 @@ declare global {
   }
 }
 
-const SKIP_AUTH = Boolean(process.env["SKIP_AUTH"]);
-const AUTH_SERVER_BASE_URL = process.env["AUTH_SERVER_BASE_URL"] as string;
-const AUTH_REALM_NAME = process.env["AUTH_REALM_NAME"] as string;
+const envSchema = z.object({
+  SKIP_AUTH: z.stringbool().nullish(),
+  AUTH_SERVER_BASE_URL: z.string(),
+  AUTH_REALM_NAME: z.string(),
+});
+
+const { SKIP_AUTH, AUTH_SERVER_BASE_URL, AUTH_REALM_NAME } = envSchema.parse(
+  process.env
+);
 
 const jwks = jose.createRemoteJWKSet(
   new URL(
